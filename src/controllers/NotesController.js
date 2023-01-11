@@ -50,9 +50,9 @@ class NotesController{
   async delete(request, response){
     const { id } = request.params
 
-    await knex("notes").where({ id }).delete()
+    await knex("notes").where({ id }).delete();
   
-    return response.json()
+    return response.json();
   }
 }
 
