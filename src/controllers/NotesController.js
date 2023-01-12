@@ -33,7 +33,7 @@ class NotesController{
     return response.json()
   }
 
-  async show (request, response) {
+  async show (request, response){
     const { id } = request.params;
 
     const note = await knex("notes").where({ id }).first();
@@ -54,6 +54,17 @@ class NotesController{
   
     return response.json();
   }
+
+  async index(request, response){
+    const { user_id } = request.query;
+
+    const notes = await knex("notes")
+    .where({ user_id })
+    .orderBy("title");
+
+    return response.json(notes);
+  }
+
 }
 
 module.exports = NotesController
